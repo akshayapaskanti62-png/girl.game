@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Flower Catch Kids Game</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="game">
+  <div id="background"></div>
+
+  <div id="scoreValue">0</div>
+  <div id="bestValue">3250</div>
+  <div id="livesValue">♥♥♥</div>
+  <div id="levelValue">3</div>
+
+  <button id="musicBtn" class="round music" aria-label="Music">♫</button>
+  <button id="soundBtn" class="round sound" aria-label="Sound">🔊</button>
+  <button id="pauseBtn" class="pause">Ⅱ &nbsp; PAUSE</button>
+
+  <div id="fallingLayer"></div>
+
+  <div id="player">
+    <img id="girlImage" src="girl.png" alt="cartoon girl">
+    <div id="basket">🧺</div>
+  </div>
+
+  <div id="pointsLayer"></div>
+
+  <div id="startOverlay" class="overlay">
+    <div class="card">
+      <div class="big">🌸</div>
+      <h1>FLOWER CATCH</h1>
+      <p>Move the girl and catch the falling flowers in her basket!</p>
+      <p class="small">Avoid the blue drops 💧</p>
+      <button id="startBtn">START GAME</button>
+    </div>
+  </div>
+
+  <div id="pauseOverlay" class="overlay hidden">
+    <div class="card smallCard"><div class="big">⏸️</div><h2>PAUSED</h2><button id="resumeBtn">RESUME</button></div>
+  </div>
+
+  <div id="gameOverOverlay" class="overlay hidden">
+    <div class="card smallCard"><div class="big">🎉</div><h2>GREAT JOB!</h2>
+      <p>Score: <b id="finalScore">0</b></p>
+      <button id="againBtn">PLAY AGAIN 🌸</button>
+    </div>
+  </div>
+
+  <div id="hint">← → / A D &nbsp; • &nbsp; Mouse / Touch to move</div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

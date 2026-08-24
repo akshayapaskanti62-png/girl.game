@@ -1,0 +1,42 @@
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:"Trebuchet MS",Arial,sans-serif;background:#5bc9ff;touch-action:none}
+#game{position:relative;width:100vw;height:100vh;overflow:hidden;isolation:isolate}
+#background{position:absolute;inset:0;background:url("background.png") center center/cover no-repeat;z-index:0}
+#fallingLayer{position:absolute;inset:0;z-index:8;pointer-events:none}
+.falling{position:absolute;left:0;top:0;line-height:1;font-size:50px;will-change:transform;filter:drop-shadow(0 4px 3px #0004)}
+#player{position:absolute;left:50%;bottom:2.7%;width:240px;height:255px;z-index:15;transform:translateX(-50%);will-change:left;pointer-events:none}
+#girlImage{position:absolute;left:0;bottom:0;width:205px;height:250px;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 7px 4px #0005)}
+#basket{position:absolute;right:2px;bottom:72px;font-size:68px;line-height:1;filter:drop-shadow(0 5px 2px #0005)}
+#pointsLayer{position:absolute;inset:0;z-index:25;pointer-events:none}
+.point,.miss{position:absolute;font-weight:1000;animation:pop .75s ease-out forwards}
+.point{color:#fff;font-size:30px;text-shadow:0 3px 0 #a34a00,0 0 12px #ffe84a}
+.miss{color:#fff;font-size:27px;text-shadow:0 3px 0 #17609a}
+@keyframes pop{0%{opacity:0;transform:translate(-50%,0) scale(.6)}20%{opacity:1}100%{opacity:0;transform:translate(-50%,-75px) scale(1.15)}}
+#scoreValue,#bestValue,#levelValue{position:absolute;z-index:20;font-weight:1000;text-align:center;pointer-events:none}
+#scoreValue{left:5.9%;top:38.7%;width:10.2%;font-size:31px;color:#6936d8}
+#bestValue{left:5.9%;top:49.7%;width:10.2%;font-size:28px;color:#23943c}
+#levelValue{right:6.6%;top:7.3%;width:8%;font-size:33px;color:#7331d8}
+#livesValue{position:absolute;left:4.5%;top:60.6%;z-index:20;width:12.5%;text-align:center;color:#f22635;font-size:31px;letter-spacing:2px;text-shadow:0 2px 2px #8d1b21;pointer-events:none}
+.round,.pause{position:absolute;z-index:30;border:4px solid #fff;color:#fff;font-weight:1000;cursor:pointer;box-shadow:0 5px 10px #0004}
+.round{width:68px;height:68px;border-radius:50%;font-size:37px}
+.music{right:8.5%;top:17%;background:linear-gradient(#ff6571,#e61c35)}
+.sound{right:2.4%;top:17%;background:linear-gradient(#55d8ff,#118ed2);font-size:29px}
+.pause{right:2.4%;top:25.7%;width:177px;height:61px;border-radius:32px;background:linear-gradient(#ffbd28,#f4760e);font-size:26px}
+button:active{transform:scale(.97)}
+.overlay{position:absolute;inset:0;z-index:60;background:#173b5d88;display:grid;place-items:center;backdrop-filter:blur(2px)}
+.hidden{display:none}
+.card{width:min(500px,88vw);background:linear-gradient(#fffce9,#ffe49a);border:6px solid #a44b1c;border-radius:30px;padding:28px;text-align:center;box-shadow:0 15px 45px #0006}
+.card h1{margin:0;color:#e33b84;font-size:42px;text-shadow:0 4px #fff}
+.card h2{color:#e33b84;font-size:32px}.card p{color:#62391e;font-size:20px;font-weight:800}
+.card .small{font-size:16px}.big{font-size:58px}
+.card button{border:4px solid #84330e;border-radius:22px;background:linear-gradient(#ffd94e,#ff7318);color:#fff;font-size:23px;font-weight:1000;padding:13px 28px;box-shadow:0 5px #6b280b;cursor:pointer}
+#hint{position:absolute;z-index:26;left:50%;bottom:8px;transform:translateX(-50%);background:#fffffff0;border-radius:15px;padding:5px 10px;color:#713b1d;font-weight:900;font-size:12px}
+@media(max-width:700px){
+  #scoreValue{font-size:18px;top:39.2%}#bestValue{font-size:17px;top:50.2%}#levelValue{font-size:20px}
+  #livesValue{font-size:20px;top:61.2%}
+  .round{width:46px;height:46px;font-size:25px;top:16%}.music{right:16%}.sound{right:5%}
+  .pause{right:4%;top:24.5%;width:105px;height:43px;font-size:18px}
+  #player{bottom:4%;transform:translateX(-50%) scale(.70);transform-origin:bottom center}
+  #hint{font-size:10px}
+}
