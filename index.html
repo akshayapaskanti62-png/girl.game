@@ -1,56 +1,149 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Flower Catch Kids Game</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Flower Catch</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div id="game">
-  <div id="background"></div>
 
-  <div id="scoreValue">0</div>
-  <div id="bestValue">3250</div>
-  <div id="livesValue">♥♥♥</div>
-  <div id="levelValue">3</div>
+    <main id="stage">
 
-  <button id="musicBtn" class="round music" aria-label="Music">♫</button>
-  <button id="soundBtn" class="round sound" aria-label="Sound">🔊</button>
-  <button id="pauseBtn" class="pause">Ⅱ &nbsp; PAUSE</button>
+        <!-- Background and Game Area -->
+        <div id="bgs"></div>
+        <div id="logo" aria-label="Flower Catch"></div>
+        <canvas id="gameCanvas" aria-label="Flower Catch game area"></canvas>
 
-  <div id="fallingLayer"></div>
+        <!-- Game Information -->
+        <div id="score" class="slot"
+            style="left:6.1%;top:41.2%;width:9.6%;height:5.5%">0</div>
 
-  <div id="player">
-    <img id="girlImage" src="girl.png" alt="cartoon girl">
-    <div id="basket">🧺</div>
-  </div>
+        <div id="bestScore" class="slot"
+            style="left:4.3%;top:58.4%;width:11.1%;height:6.4%">0</div>
 
-  <div id="pointsLayer"></div>
+        <div id="lives" class="slot"
+            style="left:4.5%;top:79%;width:10.3%;height:7%"
+            aria-live="polite">❤️❤️❤️</div>
 
-  <div id="startOverlay" class="overlay">
-    <div class="card">
-      <div class="big">🌸</div>
-      <h1>FLOWER CATCH</h1>
-      <p>Move the girl and catch the falling flowers in her basket!</p>
-      <p class="small">Avoid the blue drops 💧</p>
-      <button id="startBtn">START GAME</button>
+        <div id="level" class="slot"
+            style="left:88.2%;top:9.6%;width:8%;height:6.2%">1</div>
+
+        <!-- Game Control Buttons -->
+        <button id="musicBtn" class="hit"
+            style="left:86.3%;top:18.9%;width:5.6%;height:9.8%;border-radius:50%"
+            aria-label="Music" aria-pressed="true"></button>
+
+        <button id="soundBtn" class="hit"
+            style="left:92.6%;top:18.9%;width:5.6%;height:9.8%;border-radius:50%"
+            aria-label="Sound effects" aria-pressed="true"></button>
+
+        <button id="pauseBtn" class="hit"
+            style="left:86%;top:30.8%;width:12.2%;height:7.7%;border-radius:40px"
+            aria-label="Pause"></button>
+
+        <!-- Poem and Notification Area -->
+        <div id="poem" class="hidden" aria-live="off"></div>
+        <div id="toast" role="status"></div>
+
+        <!-- Start Screen -->
+        <section id="start" class="overlay">
+            <div class="card">
+
+                <h1>Flower Catch</h1>
+
+                <p>
+                    Collect flowers, butterflies and stars
+                    to earn points. Avoid bees and water drops.
+                    Complete the level before time runs out!
+                </p>
+
+                <div id="picker" role="radiogroup" aria-label="Choose your player"></div>
+
+                <button id="playBtn" class="btn">Play</button>
+
+                <p class="hint">
+                    Move with A / D, arrow keys, mouse or touch. P pauses.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- Level Selection Screen -->
+        <section id="map" class="overlay hidden">
+            <div class="card wide">
+
+                <h2>Choose a level</h2>
+
+                <div id="levels"></div>
+
+                <button id="backBtn" class="btn alt">Change player</button>
+
+            </div>
+        </section>
+
+        <!-- Pause Screen -->
+        <section id="pause" class="overlay hidden">
+            <div class="card">
+
+                <h2>Paused</h2>
+
+                <button id="resumeBtn" class="btn">Resume</button>
+                <button id="restartBtn" class="btn alt">Restart</button>
+                <button id="mapBtn1" class="btn alt">Levels</button>
+
+            </div>
+        </section>
+
+        <!-- Winning Screen -->
+        <section id="win" class="overlay hidden">
+            <div class="card">
+
+                <h2>Level complete!</h2>
+
+                <div id="winStars" class="stars">★★★</div>
+
+                <p>Score <b id="winScore">0</b></p>
+
+                <button id="nextBtn" class="btn">Next level</button>
+                <button id="replayBtn" class="btn alt">Replay</button>
+                <button id="mapBtn2" class="btn alt">Levels</button>
+
+            </div>
+        </section>
+
+        <!-- Losing Screen -->
+        <section id="lose" class="overlay hidden">
+            <div class="card">
+
+                <h2>Try again</h2>
+
+                <p id="loseMsg"></p>
+
+                <button id="tryBtn" class="btn">Try again</button>
+                <button id="mapBtn3" class="btn alt">Levels</button>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rotate Screen Message -->
+    <div id="rotate">
+        Turn your phone sideways to play Flower Catch
     </div>
-  </div>
 
-  <div id="pauseOverlay" class="overlay hidden">
-    <div class="card smallCard"><div class="big">⏸️</div><h2>PAUSED</h2><button id="resumeBtn">RESUME</button></div>
-  </div>
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
 
-  <div id="gameOverOverlay" class="overlay hidden">
-    <div class="card smallCard"><div class="big">🎉</div><h2>GREAT JOB!</h2>
-      <p>Score: <b id="finalScore">0</b></p>
-      <button id="againBtn">PLAY AGAIN 🌸</button>
-    </div>
-  </div>
-
-  <div id="hint">← → / A D &nbsp; • &nbsp; Mouse / Touch to move</div>
-</div>
-<script src="script.js"></script>
 </body>
 </html>
